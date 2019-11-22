@@ -38,6 +38,7 @@ class GsbController extends AbstractController
         $form->handleRequest($request);
         $typeUser = "Employé";
         $msg = null;
+        $test=null;
         if($form->isSubmitted() && $form->isValid())
         {
             $getValue = $form->getData();
