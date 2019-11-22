@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <link rel="stylesheet" href="main.css">
+
+        {% endblock %}
+{% block body %}
+{% include('menu.html.twig') %}
+  {% if typeUser == 'employe' %}
+    <h1 class="text-center">Liste des formations</h1>
+    <div class="d-flex justify-content-center">
+      {% if (message) %}
+        <div class="alert alert-danger text-center" style="width:40%">{{message}}</div>
+      {% endif %}
+    </div>
+    <div class="d-flex justify-content-center">
+      {% if (deleteMsg) %}
+        <div class="alert alert-success text-center" style="width:40%">{{deleteMsg}}</div>
+      {% endif %}
+    </div>
+    <div class="container text-center">
+      <div class="d-flex p-2 justify-content-center">
+        {% for formation in lesFormations %}
+        <div class="card bg-dark text-white mb-3" style="max-width: 20rem; margin: 5px">
+          <div class="card-header">
+            {{formation.id}}
+          </div>
+          <div class="card-body">
+            <p class="card-text">Ville : {{formation.ville}}</p>
+            <p class="card-text">Departement : {{formation.departement}}</p>
+            <p class="card-text">Nombre d'heures : {{formation.nbreHeures}}</p>
+            <a href="{{ path('app_supp_tout', {'id':formation.id} )}}" class="btn btn-primary">Supprimer</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    
+      <a href={{ path('app_formation_ajouter') }} class="btn btn-primary">Ajouter une formation</a>
+      <a href={{ path('aff_inscription') }} class="btn btn-primary">Gérer les inscriptions en cours</a>
+    </div>
+  {% else %}
+  <br>
+  <div class="d-flex justify-content-center">
+    <div class="alert alert-danger text-center" style="width:50%">Vous n'avez pas les droits d'accès à cette page !</div>
+  </div>
+  {% endif %}
+{% endblock %}
+

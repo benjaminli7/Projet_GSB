@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+  {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  {% endblock %}
+        
+{% block body %}
+{% include('menu.html.twig') %}
+
+<div class="container text-center">
+  <div class="d-flex justify-content-center">
+      <div class="card bg-dark text-white" style="width: 30rem; margin: 5px">
+          <div class="card-header">
+              Ajout d'une formation
+          </div>
+
+        <div class="card-body">
+          {{form(form)}}
+        </div>
+      </div>
+  </div>
+  <a href={{ path('app_aff_tout') }} class="btn btn-primary">Retour</a></br>
+
+</div>
+{% endblock %}  

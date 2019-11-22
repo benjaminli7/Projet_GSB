@@ -1,0 +1,56 @@
+{# Vous êtes dans la liste des formations:</br>
+{% if (message) %}
+  {{message}}
+{% endif %}
+{% for formation in lesFormations %}
+  <b>{{"Ville: "}}</b><b>{{formation.ville}}</b><b>{{", Departement: "}}</b><b>{{formation.departement}}</b><b>{{", Nombre d'heures: "}}</b><b>{{formation.nbreHeures}}</b>
+  <a href="{{path('app_inscription_visiteur', {'id':formation.id})}}"> S'inscrire </a></br>  <p>////////////////////////////////</p>
+    
+{% endfor %} #}
+
+{% extends 'base.html.twig' %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <link rel="stylesheet" href="main.css">
+
+        {% endblock %}
+{% block body %}
+{% include('menu_visiteur.html.twig') %}
+  {% if typeUser == 'visiteur' %}
+      <h1 class="text-center">Liste des formations</h1>
+
+      <div class="container d-flex justify-content-center">
+        {% if (message) %}
+        <div class="alert alert-danger text-center" style="width:40%">{{ message }}</div>
+        {% endif %}
+      </div>
+      <div class="container d-flex justify-content-center">
+        {% if (inscriptionMsg) %}
+        <div class="alert alert-success text-center" style="width:40%">{{ inscriptionMsg }}</div>
+        {% endif %}
+      </div>
+
+      <div class="container text-center">
+        <div class="d-flex p-2 justify-content-center">
+          {% for formation in lesFormations %}
+          <div class="card bg-dark text-white mb-3" style="max-width: 20rem; margin: 5px">
+            <div class="card-header">
+              {{formation.id}}
+            </div>
+            <div class="card-body">
+              <p class="card-text">Ville : {{formation.ville}}</p>
+              <p class="card-text">Departement : {{formation.departement}}</p>
+              <p class="card-text">Nombre d'heures : {{formation.nbreHeures}}</p>
+              <a href="{{path('app_inscription_visiteur', {'id':formation.id})}}" class="btn btn-primary">S'inscrire</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+  {% else %}
+    <br>
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-danger text-center" style="width:50%">Vous n'avez pas les droits d'accès à cette page !</div>
+    </div>
+  {% endif %}
+{% endblock %}

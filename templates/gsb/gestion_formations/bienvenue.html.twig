@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %} Bienvenue sur le projet GSB {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/bienvenue.css') }}" />
+{% endblock %}
+
+
+
+{% block body %}
+<div class="text-center" id="main">
+    <h1> Bienvenue sur le projet GSB ! </h1>
+    <h2> Etes-vous un employé ou un visiteur ?</h2>
+    <a class="btn btn-outline-primary" href="{{path('app_identification')}}">Employe</a>
+    <a class="btn btn-outline-primary" href="{{path('app_identificationVisiteur')}}">Visiteur</a>
+
+</div>
+{% endblock %}
